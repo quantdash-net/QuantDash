@@ -1,0 +1,19 @@
+# Python 编译文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# IDE 与系统临时文件
+.idea/
+.vscode/
+.DS_Store
+
+# 敏感配置文件（防止开发者在本地写了 API KEY 的配置文件不小心推送到公开仓库）
+.env
+config.json
+secret.txt
