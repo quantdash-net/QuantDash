@@ -1,17 +1,26 @@
-# QuantDash Python Examples
+# QuantDash Python SDK Examples
 
 [![PyPI](https://img.shields.io/pypi/v/quantdash?style=flat-square)](https://pypi.org/project/quantdash/)
 [![Python](https://img.shields.io/pypi/pyversions/quantdash?style=flat-square)](https://pypi.org/project/quantdash/)
-[![License: MIT](https://img.shields.io/badge/examples_license-MIT-yellow?style=flat-square)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/open_source-MIT-yellow?style=flat-square)](LICENSE)
 [![CI](https://github.com/quantdash-net/QuantDash/actions/workflows/ci.yml/badge.svg)](https://github.com/quantdash-net/QuantDash/actions/workflows/ci.yml)
 [![Official Website](https://img.shields.io/badge/website-quantdash.net-blue?style=flat-square)](https://quantdash.net)
 [![Documentation](https://img.shields.io/badge/docs-docs.quantdash.net-green?style=flat-square)](https://docs.quantdash.net)
 
 QuantDash 是面向开发者和量化研究员的多市场金融数据服务，提供 A 股、ETF、港股和美股行情数据。
 
-本仓库是 QuantDash 官方 Python 示例与集成仓库，包含可运行示例、测试和后续开放的工作流；**不包含闭源 QuantDash SDK 的源代码**。SDK 通过 [PyPI](https://pypi.org/project/quantdash/) 分发，完整接口说明以[官方文档](https://docs.quantdash.net)为准。
+本仓库是 QuantDash 官方 Python SDK 示例与集成仓库，包含可运行示例、测试和后续开放的工作流。本仓库当前不镜像 SDK 包源码；SDK 通过 [PyPI](https://pypi.org/project/quantdash/) 分发，当前公开版本 `0.1.0` 按 MIT License 发布。完整接口说明以[官方文档](https://docs.quantdash.net)为准。
 
 > 请认准官方域名 `quantdash.net`、API 域名 `api.quantdash.net` 和 GitHub 账号 `quantdash-net`。
+
+## 开源与商业服务边界
+
+- 本仓库中的示例、测试、文档和仓库工具采用 [MIT License](LICENSE)；
+- 官方 `quantdash` Python SDK 以每个 PyPI 发行包内的许可证元数据和随附文件为准，`0.1.0` 当前按 MIT License 发布；
+- QuantDash API、托管服务、服务端软件、账户功能、市场数据及数据再分发权不因客户端开源而开放；
+- QuantDash 名称、Logo、域名及其他商标权不在 MIT License 授权范围内。
+
+开源客户端许可证不提供 API 访问权、付费套餐权益或市场数据使用权。完整说明请阅读 [SDK-NOTICE.md](SDK-NOTICE.md)。
 
 ## 快速开始
 
@@ -125,9 +134,9 @@ QuantDash/
 ├── .env.example          # 环境变量示例
 ├── CHANGELOG.md          # 示例仓库变更记录
 ├── CONTRIBUTING.md       # 贡献指南
-├── LICENSE               # 公开示例代码的 MIT 许可证
+├── LICENSE               # 本仓库文件的 MIT 许可证
 ├── SECURITY.md           # 安全问题报告方式
-├── SDK-NOTICE.md         # 闭源 SDK、服务与数据的许可边界
+├── SDK-NOTICE.md         # SDK 开源许可与商业服务边界
 ├── pyproject.toml        # 测试与代码质量配置
 ├── quickstart.py         # 快速上手示例
 └── requirements.txt      # 可复现的运行依赖
@@ -163,9 +172,9 @@ Get-ChildItem Env:QUANTDASH_API_KEY
 
 ## 许可证
 
-本仓库中的公开示例代码和仓库工具使用 [MIT License](LICENSE)。
+本仓库中的文件使用 [MIT License](LICENSE)。
 
-该 MIT 许可证仅覆盖本仓库中的文件，不覆盖单独分发的 QuantDash SDK、API 服务、文档、市场数据、商标或其他专有资产。完整边界请阅读 [SDK-NOTICE.md](SDK-NOTICE.md)。
+单独发布的官方 `quantdash` Python SDK 以每个发行包内的许可证声明为准；当前 `0.1.0` 发行包声明为 MIT。MIT License 不授予 QuantDash API 服务、服务端软件、市场数据、数据再分发、账户权益或商标的权利。完整边界请阅读 [SDK-NOTICE.md](SDK-NOTICE.md)。
 
 ## 反馈与贡献
 
