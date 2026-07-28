@@ -2,6 +2,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/quantdash?style=flat-square)](https://pypi.org/project/quantdash/)
 [![Python](https://img.shields.io/pypi/pyversions/quantdash?style=flat-square)](https://pypi.org/project/quantdash/)
+[![License: MIT](https://img.shields.io/badge/examples_license-MIT-yellow?style=flat-square)](LICENSE)
 [![CI](https://github.com/quantdash-net/QuantDash/actions/workflows/ci.yml/badge.svg)](https://github.com/quantdash-net/QuantDash/actions/workflows/ci.yml)
 [![Official Website](https://img.shields.io/badge/website-quantdash.net-blue?style=flat-square)](https://quantdash.net)
 [![Documentation](https://img.shields.io/badge/docs-docs.quantdash.net-green?style=flat-square)](https://docs.quantdash.net)
@@ -124,7 +125,9 @@ QuantDash/
 ├── .env.example          # 环境变量示例
 ├── CHANGELOG.md          # 示例仓库变更记录
 ├── CONTRIBUTING.md       # 贡献指南
+├── LICENSE               # 公开示例代码的 MIT 许可证
 ├── SECURITY.md           # 安全问题报告方式
+├── SDK-NOTICE.md         # 闭源 SDK、服务与数据的许可边界
 ├── pyproject.toml        # 测试与代码质量配置
 ├── quickstart.py         # 快速上手示例
 └── requirements.txt      # 可复现的运行依赖
@@ -157,6 +160,12 @@ Get-ChildItem Env:QUANTDASH_API_KEY
 - 不要在 Issue、日志、截图或示例中提交真实 API Key。
 - 行情数据和示例仅用于开发、研究与接口演示，不构成投资建议。
 - 安全问题请按照 [SECURITY.md](SECURITY.md) 私下报告。
+
+## 许可证
+
+本仓库中的公开示例代码和仓库工具使用 [MIT License](LICENSE)。
+
+该 MIT 许可证仅覆盖本仓库中的文件，不覆盖单独分发的 QuantDash SDK、API 服务、文档、市场数据、商标或其他专有资产。完整边界请阅读 [SDK-NOTICE.md](SDK-NOTICE.md)。
 
 ## 反馈与贡献
 

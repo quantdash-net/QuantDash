@@ -14,6 +14,7 @@
 
 ### Added
 
+- 为本仓库公开示例代码添加 MIT License，并明确其不覆盖闭源 SDK、API 服务和数据；
 - 无需真实 API Key 的单元测试；
 - Python 3.9–3.14 CI 和 Ruff 检查；
 - 安全策略、贡献指南、Issue 与 Pull Request 模板；
