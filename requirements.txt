@@ -1,2 +1,3 @@
-quantdash>=1.0.0
+# Keep the public examples reproducible against the current SDK release.
+quantdash==0.1.0
 pandas>=1.3.0

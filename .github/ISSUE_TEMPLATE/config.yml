@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: QuantDash documentation
+    url: https://docs.quantdash.net
+    about: Review current SDK and API documentation.
+  - name: QuantDash platform support
+    url: https://quantdash.net
+    about: Get account, billing, quota, or API-key support.
