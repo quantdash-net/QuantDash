@@ -1,73 +1,78 @@
-"""
-QuantDash API - Quick Start Demo
---------------------------------------------------
-官方开发者平台: https://quantdash.net
-官方文档中心: https://docs.quantdash.net
+"""QuantDash API quick-start example.
 
-注意：运行本脚本前，请确保您已前往官方网站 https://quantdash.net 免费注册并获取您的 API Key。
+Official platform: https://quantdash.net
+Documentation: https://docs.quantdash.net
 """
+
+from __future__ import annotations
 
 import os
-import sys
+
+import pandas as pd
 from quantdash import QuantDash
 
-def main():
-    # 1. 初始化客户端
-    # 推荐做法：从系统环境变量中读取 API Key
-    # 备用做法：如果您未配置环境变量，可以手动替换下方字符串
+KLINE_COLUMNS = ["trade_date", "open", "high", "low", "close", "volume"]
+QUOTE_COLUMNS = ["symbol", "last_price", "ext.change_pct", "volume"]
+
+
+def preview(frame: pd.DataFrame, columns: list[str], *, rows: int = 5) -> pd.DataFrame:
+    """Return a validated, compact preview for terminal output."""
+    missing = [column for column in columns if column not in frame.columns]
+    if missing:
+        raise ValueError(f"响应缺少预期字段：{', '.join(missing)}")
+    return frame.loc[:, columns].tail(rows)
+
+
+def main() -> int:
+    """Run two read-only API examples and return a process exit code."""
     api_key = os.getenv("QUANTDASH_API_KEY")
-    
     if not api_key:
-        print("[!] 提示: 未检测到系统环境变量 QUANTDASH_API_KEY。")
-        print("    请前往官方网站申请 API Key: https://quantdash.net")
-        print("    并运行命令配置环境，或将下方 your_api_key_here 替换为您的 Key 再次尝试。")
-        
-        # 允许用户临时硬编码替换测试
-        api_key = "your_api_key_here"
-        
-        if api_key == "your_api_key_here":
-            print("\n[错误] 请输入有效的 API Key 以运行此 demo。")
-            sys.exit(1)
+        print("[错误] 未检测到环境变量 QUANTDASH_API_KEY。")
+        print("请访问 https://quantdash.net 获取 API Key，并参考 README 完成配置。")
+        return 1
 
-    print("[+] 正在初始化 QuantDash 客户端 (API Host: quantdash.net)...")
+    print("[+] 正在初始化 QuantDash 客户端...")
     qd = QuantDash(api_key=api_key)
+    failures: list[str] = []
 
-    # 2. 演示接口一：获取历史 K 线数据 (以 A股 贵州茅台 为例)
-    # 接口细节可参考：https://docs.quantdash.net/klines
+    print("\n[+] 1. 获取 600519.SH 前复权日 K 数据...")
     try:
-        print("\n[+] 1. 正在调取历史K线接口 (K-Line Data)...")
-        df_kline = qd.klines.get(
-            symbol="600519.SH", 
-            period="1d", 
-            adjust="qfq", 
-            to_dataframe=True
+        kline = qd.klines.get(
+            "600519.SH",
+            period="1d",
+            count=5,
+            adjust="forward",
+            to_dataframe=True,
         )
-        if not df_kline.empty:
-            print(f"成功获取 600519.SH 日K线数据，共 {len(df_kline)} 条记录。")
-            print(df_kline[["trade_date", "open", "high", "low", "close", "volume"]].tail(5))
-        else:
-            print("未获取到有效数据，请检查网络或标的代码。")
-    except Exception as e:
-        print(f"调取K线数据失败，请确认 API 权限是否正常: {e}")
+        if kline is None or kline.empty:
+            raise ValueError("接口返回空数据")
+        print(f"成功获取 {len(kline)} 条记录：")
+        print(preview(kline, KLINE_COLUMNS).to_string(index=False))
+    except Exception as exc:
+        failures.append("K 线")
+        print(f"[错误] K 线请求失败：{exc}")
 
-    # 3. 演示接口二：获取全市场实时行情看板 (Quotes)
-    # 接口细节可参考：https://docs.quantdash.net/quotes
+    print("\n[+] 2. 获取 A 股全市场行情快照...")
     try:
-        print("\n[+] 2. 正在调取全市场行情快照接口 (Quotes)...")
-        # 传入 universes 参数（支持 A 股市场 'CN_Stock'）获取实时行情快照
-        quotes_df = qd.quotes.get(universes=["CN_Stock"], to_dataframe=True)
-        if not quotes_df.empty:
-            print("A 股全市场实时行情数据样本预览 (前5行)：")
-            print(quotes_df[["symbol", "last_price", "change_percent", "volume"]].head(5))
-        else:
-            print("未获取到实时行情快照。")
-    except Exception as e:
-        print(f"调取行情快照失败: {e}")
+        quotes = qd.quotes.get(universes="CN_Stock", to_dataframe=True)
+        if quotes is None or quotes.empty:
+            raise ValueError("接口返回空数据")
+        print(f"成功获取 {len(quotes)} 只标的，前五行预览：")
+        print(preview(quotes.head(5), QUOTE_COLUMNS).to_string(index=False))
+    except Exception as exc:
+        failures.append("行情快照")
+        print(f"[错误] 行情快照请求失败：{exc}")
 
-    print("\n--------------------------------------------------")
-    print("[✓] Demo 运行演示结束。")
-    print("想要了解更多关于高频五档盘口、历史 Tick 数据的细节？")
-    print("请访问唯一官方网站: https://quantdash.net 获取最新更新。")
+    print("\n" + "-" * 50)
+    if failures:
+        print(f"[!] 示例结束，失败接口：{', '.join(failures)}。")
+        print("请检查 API Key、接口权限、网络连接和官方文档。")
+        return 1
+
+    print("[✓] 示例运行成功。")
+    print("更多接口与参数：https://docs.quantdash.net")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

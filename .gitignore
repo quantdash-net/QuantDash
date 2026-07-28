@@ -1,19 +1,33 @@
-# Python 编译文件
+# Python caches and build artifacts
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
 
-# 虚拟环境
+# Virtual environments
 venv/
 .venv/
 env/
 
-# IDE 与系统临时文件
+# IDE and operating-system files
 .idea/
 .vscode/
 .DS_Store
 
-# 敏感配置文件（防止开发者在本地写了 API KEY 的配置文件不小心推送到公开仓库）
+# Sensitive local configuration
 .env
+.env.*
+!.env.example
 config.json
 secret.txt
+
+# Generated examples and local market data
+outputs/
+*.csv
+*.parquet
