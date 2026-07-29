@@ -1,0 +1,4 @@
+interface:
+  display_name: "QuantDash 盘前选股"
+  short_description: "Rank risk-aware A-share premarket candidates"
+  default_prompt: "Use $screen-premarket-stocks to build a ranked A-share premarket candidate list with data timestamps and risk notes."
