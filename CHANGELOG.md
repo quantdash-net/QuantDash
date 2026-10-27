@@ -14,6 +14,8 @@
 
 ### Added
 
+- 新增多市场同一接口示例 `multi_market_klines.py`，同一段代码跑 A 股、ETF、港股和美股；
+
 - 为本仓库公开示例代码添加 MIT License，并明确其不覆盖闭源 SDK、API 服务和数据；
 - 无需真实 API Key 的单元测试；
 - Python 3.9–3.14 CI 和 Ruff 检查；

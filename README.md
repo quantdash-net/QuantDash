@@ -116,6 +116,16 @@ quotes = qd.quotes.get(
 | 港股 | `HK_Stock` | `00700.HK` |
 | 美股 | `US_Stock` | `AAPL.US` |
 
+## 多市场同一接口
+
+`multi_market_klines.py` 用同一段代码跑四个市场，只换标的代码：
+
+```bash
+python multi_market_klines.py
+```
+
+它依次获取 `600519.SH`（A 股）、`510300.SH`（ETF）、`00700.HK`（港股）、`AAPL.US`（美股）的前复权日 K 数据，调用参数全部相同：`period="1d"`、`count=5`、`adjust="forward"`。
+
 ## 项目结构
 
 ```text
@@ -130,6 +140,7 @@ QuantDash/
 ├── SDK-NOTICE.md         # 闭源 SDK、服务与数据的许可边界
 ├── pyproject.toml        # 测试与代码质量配置
 ├── quickstart.py         # 快速上手示例
+├── multi_market_klines.py # 多市场同一接口示例
 └── requirements.txt      # 可复现的运行依赖
 ```
 
