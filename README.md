@@ -6,6 +6,7 @@
 [![CI](https://github.com/quantdash-net/QuantDash/actions/workflows/ci.yml/badge.svg)](https://github.com/quantdash-net/QuantDash/actions/workflows/ci.yml)
 [![Official Website](https://img.shields.io/badge/website-quantdash.net-blue?style=flat-square)](https://quantdash.net)
 [![Documentation](https://img.shields.io/badge/docs-docs.quantdash.net-green?style=flat-square)](https://docs.quantdash.net)
+[![Blog](https://img.shields.io/badge/blog-blog.quantdash.net-orange?style=flat-square)](https://blog.quantdash.net)
 
 QuantDash 是面向开发者和量化研究员的多市场金融数据服务，提供 A 股、ETF、港股和美股行情数据。
 
@@ -183,4 +184,5 @@ Get-ChildItem Env:QUANTDASH_API_KEY
 - 使用问题或功能建议：提交 [Issue](https://github.com/quantdash-net/QuantDash/issues)；
 - 贡献示例与修复：阅读 [CONTRIBUTING.md](CONTRIBUTING.md)；
 - SDK 接口文档：[docs.quantdash.net](https://docs.quantdash.net)；
-- 官方平台：[quantdash.net](https://quantdash.net)。
+- 官方平台：[quantdash.net](https://quantdash.net)；
+- 官方博客：[blog.quantdash.net](https://blog.quantdash.net)。
