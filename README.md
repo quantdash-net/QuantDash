@@ -127,6 +127,24 @@ python multi_market_klines.py
 
 它依次获取 `600519.SH`（A 股）、`510300.SH`（ETF）、`00700.HK`（港股）、`AAPL.US`（美股）的前复权日 K 数据，调用参数全部相同：`period="1d"`、`count=5`、`adjust="forward"`。
 
+## 入门：双均线回测
+
+`ma_crossover_backtest.py` 是面向量化入门的双均线示例，只用 pandas 计算收益、年化、最大回撤，并与买入持有对比。
+
+```bash
+python ma_crossover_backtest.py
+```
+
+默认使用 `510300.SH`、MA5 / MA20，拉取最近 250 根前复权日 K。MA5 上穿 MA20 买入、下穿卖出；信号按当日收盘计算，次日才执行，避免未来函数。每次换仓收取万三手续费。
+
+自定义标的和参数：
+
+```bash
+python ma_crossover_backtest.py 600519.SH --fast 10 --slow 60 --count 500
+```
+
+回测未考虑滑点、涨跌停与停牌，结果仅用于学习接口用法，不构成投资建议。
+
 ## 项目结构
 
 ```text
@@ -142,6 +160,7 @@ QuantDash/
 ├── pyproject.toml        # 测试与代码质量配置
 ├── quickstart.py         # 快速上手示例
 ├── multi_market_klines.py # 多市场同一接口示例
+├── ma_crossover_backtest.py # 双均线回测入门示例
 └── requirements.txt      # 可复现的运行依赖
 ```
 
